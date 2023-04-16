@@ -1,0 +1,194 @@
+.card__content {
+  list-style-type: none;
+  display: flex;
+  max-width: 400px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.card__name-month {
+  display: flex;
+  background-color: #fff;
+  width: 100%;
+  min-height: 50px;
+  height: auto;
+  border-radius: 15px;
+  align-items: center;
+  justify-content: center;
+}
+@media screen and (max-width: 420px) {
+  .card__name-month {
+    max-width: 300px;
+    width: 100%;
+  }
+}
+
+.card__name-title {
+  margin: 0;
+  font-family: 'Caveat';
+  color: #d13939;
+  font-size: 42px;
+  line-height: 100%;
+}
+
+.input__checked {
+  display: none;
+}
+
+.card__label {
+  width: 48px;
+  height: 48px;
+}
+
+.card__btn-img {
+  cursor: pointer;
+  transition: all 1000ms ease-in-out;
+}
+
+/*плавное всплытие списка услуг карточки*/
+.alert-enter-active {
+  animation: anim-alert 700ms;
+}
+.alert-enter-done {
+  animation: anim-alert 700ms;
+}
+.alert-exit-done {
+  animation: anim-alert 700ms reverse;
+}
+.alert-exit-active {
+  animation: anim-alert 700ms reverse;
+}
+
+@keyframes anim-alert {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.card__list-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.card__list-fieldset {
+  padding: 0;
+	margin: 0;
+  border: none;
+  max-width: 400px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card__list-services {
+  max-width: 360px;
+  width: 100%;
+  max-height: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 0 0 10px 10px;
+  background-image: linear-gradient(
+    to right,
+    #e4afcb 0%,
+    #b8cbb8 0%,
+    #b8cbb8 0%,
+    #e2c58b 30%,
+    #c2ce9c 64%,
+    #7edbdc 100%
+  );
+  transition: all 700ms ease-in-out;
+}
+@media screen and (max-width: 420px) {
+  .card__list-services {
+    max-width: 260px;
+    width: 100%;
+  }
+}
+
+.card__services {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+@media screen and (max-width: 420px) {
+  .card__services {
+    flex-direction: column;
+  }
+}
+
+.card__label-services {
+  font-family: 'Inter', 'Arial', sans-serif;
+  color: #000000;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 28px;
+}
+
+.card__input-services {
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+  border: none;
+  border-radius: 5px;
+}
+
+.card__input-services:focus {
+	outline: none;
+	border: 1px solid black;
+ }
+
+.card__list-saveBtn {
+  max-width: 100px;
+  width: 100%;
+  min-height: 30px;
+  height: auto;
+  text-align: center;
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  outline: none;
+  margin: 20px auto 0;
+  padding: 0;
+}
+.card__list-saveBtn:hover {
+  background-color: #66e283;
+  transition: all 0.3s ease-out;
+}
+
+/*убираем стрелки у инпутов с типом number*/
+/*для Chrome*/
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/*для Firefox*/
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+input[type='number']:hover,
+input[type='number']:focus {
+  -webkit-appearance: number-input;
+}
+/*для других*/
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

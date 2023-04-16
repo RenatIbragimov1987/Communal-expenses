@@ -1,0 +1,23 @@
+.main__content {
+  max-width: 1280px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 60px auto 0;
+}
+
+.main__card-list {
+	width: 100%;
+  display: flex;
+  padding: 0;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+	
+}
+@media screen and (max-width: 1247px) {
+  .main__card-list {
+		transition: all 1s ease-in-out;
+    justify-content: space-around;
+  }
+}
