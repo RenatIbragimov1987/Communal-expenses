@@ -28,6 +28,7 @@
   width: 40px;
   height: 40px;
   animation: rotation 1s ease-in-out infinite alternate;
+	margin: 0 50px;
 }
 
 .header__animation {
@@ -38,6 +39,11 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+.header__marquee {
+	
+	
 }
 
 .header__authentication {

@@ -3,12 +3,9 @@ const express = require('express');
 const { validateMovie } = require('../validator/validator');
 
 const communalcard = express.Router();
-const {
-  getCommunalcard,
-  postCommunalcard,
-} = require('../controllers/communalcard');
+const { getAllCards, postCard } = require('../controllers/communalcard');
 
-communalcard.get('/communalcard', getCommunalcard);
-communalcard.post('/communalcard', validateMovie, postCommunalcard);
+communalcard.get('/communalcard', getAllCards);
+communalcard.post('/communalcard', validateMovie, postCard);
 
 module.exports = { communalcard };

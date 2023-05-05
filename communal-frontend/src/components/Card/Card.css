@@ -18,7 +18,7 @@
   height: auto;
   border-radius: 15px;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 }
 @media screen and (max-width: 420px) {
   .card__name-month {
@@ -33,6 +33,7 @@
   color: #d13939;
   font-size: 42px;
   line-height: 100%;
+  padding-left: 5px;
 }
 
 .input__checked {
@@ -40,27 +41,44 @@
 }
 
 .card__label {
-  width: 48px;
+  width: 158px;
   height: 48px;
+}
+@media screen and (max-width: 420px) {
+  .card__label {
+    width: 48px;
+  }
 }
 
 .card__btn-img {
   cursor: pointer;
-  transition: all 1000ms ease-in-out;
+  transition: all 200ms ease-in-out;
+  display: flex;
+  margin-left: 100px;
+  border-radius: 20px;
+}
+@media screen and (max-width: 420px) {
+  .card__btn-img {
+    padding-left: 0;
+  }
+}
+
+.card__btn-img:hover {
+  background-color: #9ae0aa;
 }
 
 /*плавное всплытие списка услуг карточки*/
 .alert-enter-active {
-  animation: anim-alert 700ms;
+  animation: anim-alert 500ms;
 }
 .alert-enter-done {
-  animation: anim-alert 700ms;
+  animation: anim-alert 500ms;
 }
 .alert-exit-done {
-  animation: anim-alert 700ms reverse;
+  animation: anim-alert 500ms reverse;
 }
 .alert-exit-active {
-  animation: anim-alert 700ms reverse;
+  animation: anim-alert 500ms reverse;
 }
 
 @keyframes anim-alert {
@@ -83,7 +101,7 @@
 
 .card__list-fieldset {
   padding: 0;
-	margin: 0;
+  margin: 0;
   border: none;
   max-width: 400px;
   width: 100%;
@@ -110,7 +128,7 @@
     #c2ce9c 64%,
     #7edbdc 100%
   );
-  transition: all 700ms ease-in-out;
+  transition: all 500ms ease-in-out;
 }
 @media screen and (max-width: 420px) {
   .card__list-services {
@@ -149,9 +167,9 @@
 }
 
 .card__input-services:focus {
-	outline: none;
-	border: 1px solid black;
- }
+  outline: none;
+  border: 1px solid black;
+}
 
 .card__list-saveBtn {
   max-width: 100px;

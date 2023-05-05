@@ -1,10 +1,10 @@
 const BadRequestError = require('../errors/BadRequestError');
 const Communalcard = require('../models/communalcard');
 
-const getCard = async (req, res, next) => {
+const getAllCards = async (req, res, next) => {
   try {
-    const communalcard = await Communalcard.find({ owner: req.user.id }).exec();
-    res.status(200).send(communalcard);
+    const communalcards = await Communalcard.find({});
+    res.status(200).send(communalcards);
   } catch (err) {
     next(err);
   }
@@ -18,6 +18,7 @@ const postCard = async (req, res, next) => {
       hotwater,
       coldwater,
       caprepair,
+      heating,
       sum,
     } = req.body;
     const card = new Communalcard({
@@ -26,10 +27,10 @@ const postCard = async (req, res, next) => {
       hotwater,
       coldwater,
       caprepair,
+      heating,
       sum,
     });
     await card.save();
-    // await mcardovie.populate('owner');
     res.status(201).send(card);
   } catch (err) {
     if (err.name === 'ValidationError') {
@@ -41,6 +42,6 @@ const postCard = async (req, res, next) => {
 };
 
 module.exports = {
-  getCard,
+  getAllCards,
   postCard,
 };

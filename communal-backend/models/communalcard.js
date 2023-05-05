@@ -21,6 +21,10 @@ const communalcardSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  heating: {
+    type: Number,
+    required: true,
+  },
   sum: {
     type: Number,
     required: true,

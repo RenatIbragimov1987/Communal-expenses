@@ -1,13 +1,31 @@
 import './Card.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
-function Card({ togleChecked, month }) {
+function Card({ card, index, month, isCardsData, addCardData }) {
   const [isTogleCheckbox, setIsTogleCheckbox] = useState(false);
+  const [isCardsValue, setIsCardsValue] = useState('');
 
-	const saveFormSubmit = (evt) => {
-		evt.preventDefault()
-	}
+  const onHandler = (evt) => {
+    evt.preventDefault();
+    setIsCardsValue(evt.target.value);
+  };
+
+  const onChangeHandler = (evt) => {
+    evt.preventDefault();
+    addCardData({
+			"electricity": isCardsData.electricity,
+			"gas": isCardsData.gas,
+			"hotwater": isCardsData.hotwater,
+			"coldwater": isCardsData.coldwater,
+			"caprepair": isCardsData.caprepair,
+			"heating": isCardsData.heating,
+			"sum": isCardsData.sum,
+		}
+		);
+  }; // слушатель ввода данных в полях input карточек
+
+console.log(isCardsData);
 
   return (
     <li className="card__content">
@@ -36,12 +54,15 @@ function Card({ togleChecked, month }) {
       </div>
       <CSSTransition
         in={isTogleCheckbox}
-        timeout={700}
+        timeout={500}
         classNames="alert"
         unmountOnExit
       >
-				
-        <form className="card__list-form" name='form'  action="mongodb://localhost:27017/communaldb">
+        <form
+          className="card__list-form"
+          name="form"
+          onChange={onHandler}
+        >
           <fieldset className="card__list-fieldset">
             <ul className="card__list-services">
               <li className="card__services">
@@ -50,9 +71,10 @@ function Card({ togleChecked, month }) {
                 </label>
                 <input
                   type="number"
-                  name=""
+                  name="electricity"
                   id="electricity"
                   className="card__input-services"
+                  // defaultValue={isCardsData ? isCardsData.electricity : ''}
                 />
               </li>
               <li className="card__services">
@@ -61,9 +83,10 @@ function Card({ togleChecked, month }) {
                 </label>
                 <input
                   type="number"
-                  name=""
+                  name="gas"
                   id="gas"
                   className="card__input-services"
+                  // defaultValue={isCardsData ? isCardsData.gas : ''}
                 />
               </li>
               <li className="card__services">
@@ -75,6 +98,7 @@ function Card({ togleChecked, month }) {
                   name="hot-water"
                   id="hot-water"
                   className="card__input-services"
+                  // defaultValue={isCardsData ? isCardsData.hotwater : ''}
                 />
               </li>
               <li className="card__services">
@@ -86,17 +110,7 @@ function Card({ togleChecked, month }) {
                   name="cold-water"
                   id="cold-water"
                   className="card__input-services"
-                />
-              </li>
-              <li className="card__services">
-                <label htmlFor="heating" className="card__label-services">
-                  отопление:
-                </label>
-                <input
-                  type="number"
-                  name="heating"
-                  id="heating"
-                  className="card__input-services"
+                  // defaultValue={isCardsData ? isCardsData.coldwater : ''}
                 />
               </li>
               <li className="card__services">
@@ -108,8 +122,22 @@ function Card({ togleChecked, month }) {
                   name="cap-repair"
                   id="cap-repair"
                   className="card__input-services"
+                  // defaultValue={isCardsData ? isCardsData.caprepair : ''}
                 />
               </li>
+              <li className="card__services">
+                <label htmlFor="heating" className="card__label-services">
+                  отопление:
+                </label>
+                <input
+                  type="number"
+                  name="heating"
+                  id="heating"
+                  className="card__input-services"
+                  // defaultValue={isCardsData ? isCardsData.heating : ''}
+                />
+              </li>
+
               <li className="card__services">
                 <label htmlFor="sum" className="card__label-services">
                   итого сумма:
@@ -119,9 +147,12 @@ function Card({ togleChecked, month }) {
                   name="sum"
                   id="sum"
                   className="card__input-services"
+                  // defaultValue={isCardsData ? isCardsData.sum : ''}
                 />
               </li>
-              <button type='submit' className="card__list-saveBtn">сохранить</button>
+              <button type="submit" className="card__list-saveBtn" onChange={onChangeHandler}>
+                сохранить
+              </button>
             </ul>
           </fieldset>
         </form>
