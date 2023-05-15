@@ -12,14 +12,6 @@ const NotFoundDataError = require('./errors/NotFoundDataError');
 
 const app = express();
 const accessCors = [
-  // 'https://movies.nomoredomains.xyz',
-  // 'http://movies.nomoredomains.xyz',
-  // 'https://api.nomoreparties.co',
-  // 'http://api.nomoreparties.co',
-  // 'http://api.nomoreparties.co',
-  // 'htts://api.nomoreparties.co',
-  // 'https://movies.api.nomoredomains.xyz',
-  // 'http://movies.api.nomoredomains.xyz',
   'http://localhost:3000',
   'https://localhost:3000',
   'http://localhost:4000',
@@ -53,11 +45,12 @@ async function main() {
 
   app.use(errorLogger);
   app.use(errors());
+  // app.use();
   app.use(handleError);
 
   app.use((err, req, res, next) => {
+    console.error(err);
     next(new NotFoundDataError('Запрошен несуществующий маршрут'));
-    next();
   });
 
   app.listen(PORT, () => {

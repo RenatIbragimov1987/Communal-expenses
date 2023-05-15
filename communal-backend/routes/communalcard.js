@@ -1,11 +1,11 @@
 const express = require('express');
 
-const { validateMovie } = require('../validator/validator');
+// const { validateMovie } = require('../validator/validator');
 
 const communalcard = express.Router();
-const { getAllCards, postCard } = require('../controllers/communalcard');
+const { getAllCards, patchCard, postCard } = require('../controllers/communalcard');
 
 communalcard.get('/communalcard', getAllCards);
-communalcard.post('/communalcard', validateMovie, postCard);
-
-module.exports = { communalcard };
+communalcard.patch('/communalcard/:_id/dataId', patchCard);
+communalcard.post('/communalcard', postCard);
+module.exports = communalcard;

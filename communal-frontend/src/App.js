@@ -14,30 +14,42 @@ function App() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isRegistration, setIsRegistration] = useState(true);
   const [isTogleCheckbox, setIsTogleCheckbox] = useState(false);
-
-  // const [isLoggetIn, setIsLoggetIn] = useState(false);
   const [isCardsData, setIsCardsData] = useState([]);
+
+  useEffect(() => {
+    try {
+      const cardsData = JSON.parse(localStorage.getItem('foundCardLoc'));
+      setIsCardsData(cardsData);
+    } catch (error) {
+      console.error(error);
+    }
+
+    const handleStorage = (event) => {
+      if (event.key === 'foundCardLoc') {
+        try {
+          const cardsData = JSON.parse(event.newValue);
+          setIsCardsData(cardsData);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    };
+
+    window.addEventListener('storage', handleStorage);
+
+    return () => window.removeEventListener('storage', handleStorage);
+  }, []);
 
   useEffect(() => {
     Api.loadingCardData().then((data) => {
       localStorage.setItem('foundCardLoc', JSON.stringify(data));
     });
-  }, []); // запросим и запишем данные карточек в локалсторедж
+  }, [isCardsData]);
 
-  useEffect(() => {
-    setIsCardsData(JSON.parse(localStorage.foundCardLoc));
-  }, []); // распарсим данные из локалстореджа и запишем их в стейт переменную isCardsData
-
-
-	function addCardData(newCard){
-		Api.addNewCardData(newCard)
-		.then((newCard) => {
-			setIsCardsData([newCard, ...isCardsData])
-		})
-  };
-
-
-
+  // useEffect(() => {
+  // 	const cardsData = JSON.parse(localStorage.getItem('foundCardLoc'));
+  // 	setIsCardsData(cardsData);
+  // }, []);
 
   const openModal = () => {
     setIsPopupOpen(true);
@@ -70,8 +82,11 @@ function App() {
         setIsTogleCheckbox={setIsTogleCheckbox}
         isTogleCheckbox={isTogleCheckbox}
         isCardsData={isCardsData}
+        // isCardsValue={isCardsValue}
+        // handleChange={handleChange}
         // onChangeHandler={onChangeHandler}
-				addCardData={addCardData}
+        // addCardData={addCardData}
+        setIsCardsData={setIsCardsData}
       />
       <Footer />
     </div>

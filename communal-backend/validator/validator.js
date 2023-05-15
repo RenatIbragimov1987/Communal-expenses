@@ -1,12 +1,12 @@
 const { celebrate, Joi } = require('celebrate');
-const isURL = require('validator/lib/isURL');
+// const isURL = require('validator/lib/isURL');
 
-const isValidLink = (value) => {
-  if (!isURL(value)) {
-    console.log('Некорректная ссылка');
-  }
-  return value;
-};
+// const isValidLink = (value) => {
+//   if (!isURL(value)) {
+//     console.log('Некорректная ссылка');
+//   }
+//   return value;
+// };
 const validateSignup = celebrate({
   body: Joi.object().keys({
     name: Joi.string().min(2).max(30).required(),
@@ -24,17 +24,13 @@ const validateSignin = celebrate({
 
 const validateMovie = celebrate({
   body: Joi.object().keys({
-    country: Joi.string().required(),
-    director: Joi.string().required(),
-    duration: Joi.number().required(),
-    year: Joi.number().required(),
-    description: Joi.string().required(),
-    image: Joi.string().required().custom(isValidLink),
-    trailerLink: Joi.string().required().custom(isValidLink),
-    thumbnail: Joi.string().required().custom(isValidLink),
-    movieId: Joi.number().required(),
-    nameRU: Joi.string().required(),
-    nameEN: Joi.string().required(),
+    electricity: Joi.number().required(),
+    gas: Joi.number().required(),
+    hotwater: Joi.number().required(),
+    coldwater: Joi.number().required(),
+    caprepair: Joi.number().required(),
+    heating: Joi.number().required(),
+    sum: Joi.string().required(),
   }),
 });
 

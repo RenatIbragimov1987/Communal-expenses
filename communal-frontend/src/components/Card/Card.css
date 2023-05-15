@@ -59,7 +59,7 @@
 }
 @media screen and (max-width: 420px) {
   .card__btn-img {
-    padding-left: 0;
+    margin-left: 0;
   }
 }
 

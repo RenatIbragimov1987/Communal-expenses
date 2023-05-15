@@ -3,31 +3,31 @@ const mongoose = require('mongoose');
 const communalcardSchema = new mongoose.Schema({
   electricity: {
     type: Number,
-    required: true,
+    // required: true,
   },
   gas: {
     type: Number,
-    required: true,
+    // required: true,
   },
   hotwater: {
     type: Number,
-    required: true,
+    // required: true,
   },
   coldwater: {
     type: Number,
-    required: true,
+    // required: true,
   },
   caprepair: {
     type: Number,
-    required: true,
+    // required: true,
   },
   heating: {
     type: Number,
-    required: true,
+    // required: true,
   },
   sum: {
     type: Number,
-    required: true,
+    // required: true,
   },
 });
 

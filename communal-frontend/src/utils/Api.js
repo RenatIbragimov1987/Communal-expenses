@@ -7,6 +7,7 @@ class Api {
 
   // возвращаем результат работы метода
   _checkStatus = (res) => {
+		console.log(res);
     if (res.ok) {
       return res.json();
     }
@@ -14,8 +15,8 @@ class Api {
   };
 
   // загрузка данных карточек с сервера
-  loadingCardData() {
-    return fetch(`${this._address}`, {
+  async loadingCardData() {
+    return await fetch(`${this._address}`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -28,30 +29,14 @@ class Api {
       });
   }
 
-  addNewCardData({
-    electricity,
-    gas,
-    hotwater,
-    coldwater,
-    caprepair,
-    heating,
-    sum,
-  }) {
-    return fetch(`${this._address}`, {
-      method: 'POST',
+  addNewCardData(_id, data) {
+    return fetch(`${this._address}/${_id}/dataId`, {
+      method: 'PATCH',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        electricity,
-        gas,
-        hotwater,
-        coldwater,
-        caprepair,
-        heating,
-        sum,
-      }),
+			body: JSON.stringify(data),
     })
       .then((res) => this._checkStatus(res))
       .catch((err) => {

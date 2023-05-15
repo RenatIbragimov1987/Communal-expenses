@@ -10,28 +10,55 @@ const getAllCards = async (req, res, next) => {
   }
 };
 
+const patchCard = async (req, res, next) => {
+  const cardById = req.params._id;
+  try {
+    const {
+      electricity, gas, hotwater, coldwater, caprepair, heating, sum,
+    } = req.body;
+    const updatedCard = await Communalcard.findByIdAndUpdate(
+      cardById,
+      {
+        electricity,
+        gas,
+        hotwater,
+        coldwater,
+        caprepair,
+        heating,
+        sum,
+      },
+      { new: true },
+    );
+    // const { ...result } = updatedCard.toObject(updatedCard);
+    // console.log(updatedCard.toObject(updatedCard));
+    await updatedCard.save(updatedCard);
+    res.status(201).send();
+  } catch (err) {
+    if (err.name === 'ValidationError') {
+      next(new BadRequestError('Произошла ошибка. Поля должны быть заполнены'));
+      return;
+    }
+    next(err);
+  }
+};
 const postCard = async (req, res, next) => {
   try {
     const {
-      electricity,
-      gas,
-      hotwater,
-      coldwater,
-      caprepair,
-      heating,
-      sum,
+      id, electricity, gas, hotwater, coldwater, caprepair, heating, sum,
     } = req.body;
-    const card = new Communalcard({
-      electricity,
-      gas,
-      hotwater,
-      coldwater,
-      caprepair,
-      heating,
-      sum,
-    });
-    await card.save();
-    res.status(201).send(card);
+    const updatedCard = await Communalcard.create(
+      {
+        id,
+        electricity,
+        gas,
+        hotwater,
+        coldwater,
+        caprepair,
+        heating,
+        sum,
+      },
+    );
+    res.status(201).send(updatedCard);
   } catch (err) {
     if (err.name === 'ValidationError') {
       next(new BadRequestError('Произошла ошибка. Поля должны быть заполнены'));
@@ -43,5 +70,6 @@ const postCard = async (req, res, next) => {
 
 module.exports = {
   getAllCards,
+  patchCard,
   postCard,
 };

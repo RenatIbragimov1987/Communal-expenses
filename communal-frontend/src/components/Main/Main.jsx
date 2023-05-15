@@ -1,21 +1,18 @@
 import './Main.css';
 import Card from '../Card/Card';
 
-function Main({ month, isCardsData, addCardData }) {
+function Main({ month, isCardsData, setIsCardsData }) {
   return (
     <main className="main__content">
       <ul className="main__card-list">
-        {[...Array(12)].map((card, index) => {
+			{isCardsData && isCardsData.map((card, index) => {
           return (
             <Card
-							card={card}
-              key={index}
-              isCardsData={isCardsData[index]}
+              key={card._id}
+              card={card}
               month={month[index]}
-							index={index}
-              // onChangeHandler={onChangeHandler}
-              
-							addCardData={addCardData}
+              index={index}
+              setIsCardsData={setIsCardsData}
             />
           );
         })}
